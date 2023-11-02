@@ -4,14 +4,14 @@
 </template>
 
 <script>
-import AppHeader from "./components/AppHeader.vue";
-import SearchResults from "./views/SearchResults.vue";
+import AppHeader from './components/AppHeader.vue';
+import SearchResults from './views/SearchResults.vue';
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    SearchResults
-}
-}
+    SearchResults,
+  },
+};
 </script>

@@ -27,23 +27,23 @@
 <script>
 import firebase from 'firebase';
 export default {
-name: 'register',
-data: function() {
-  return {
-  // Completar
-  };
-},
-methods: {
-  register: function(e) {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword("***completar***", "***completar***")
-      .then(
-    // Completar
-      );
-    e.preventDefault();
-  }
-}
+  name: 'register',
+  data: function() {
+    return {
+      // Completar
+    };
+  },
+  methods: {
+    register: function(e) {
+      firebase
+          .auth()
+          .createUserWithEmailAndPassword('***completar***', '***completar***')
+          .then(
+              // Completar
+          );
+      e.preventDefault();
+    },
+  },
 };
 </script>
 

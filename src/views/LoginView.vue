@@ -30,20 +30,20 @@ export default {
   name: 'login',
   data: function() {
     return {
-		// Completar
+      // Completar
     };
   },
   methods: {
     login: function(e) {
       firebase
-        .auth()
-        .signInWithEmailAndPassword("***completar***", "***completar***")
-        .then(
-			// completar
-        );
+          .auth()
+          .signInWithEmailAndPassword('***completar***', '***completar***')
+          .then(
+              // completar
+          );
       e.preventDefault();
-    }
-  }
+    },
+  },
 };
 </script>
 
