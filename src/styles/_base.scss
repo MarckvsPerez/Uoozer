@@ -1,61 +1,62 @@
 // aquí pondremos los estilos generales de la app:
 
 body {
-	margin: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;  
-	color: $text-color;
-	font-size: 16px;
-    max-width:100%;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: $text-color;
+    font-size: 16px;
+    max-width: 100%;
     background: $bg-color;
 
     @media #{$max-sm} {
         font-size: 14px;
-    }        
+    }
 }
 
 
-.app-container{
+.app-container {
     min-height: 100vh;
-	display: flex;
-    flex-direction: column; 
-    padding-bottom: 30px;   
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
     max-width: 1500px;
 }
 
-main{
+main {
     padding-top: 120px;
     height: 100%;
-    flex:1;
+    flex: 1;
+
     @media #{$max-sm} {
         padding-top: 100px;
-    }    
+    }
 }
 
-.alink{
+.alink {
     font-weight: 600;
     border-bottom: 1px solid $blue;
 
-    &:hover{
-        border-color:$grey-medium;
-        color:$grey-medium;
+    &:hover {
+        border-color: $grey-medium;
+        color: $grey-medium;
         text-decoration: none;
     }
 }
 
-.aright{
+.aright {
     text-align: right;
 }
 
-.color-red{
+.color-red {
     color: $red;
 }
 
-.color-green{
+.color-green {
     color: $green;
 }
 
-.visibility-hidden{
+.visibility-hidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -68,56 +69,57 @@ main{
 
 // titles
 
-.main-title, .title{
+.main-title,
+.title {
     font-weight: 900;
 }
 
-.main-title{
+.main-title {
     font-size: 32px;
     margin-bottom: 15px;
 
     @media #{$max-sm} {
         font-size: 27px;
         line-height: 1.3em;
-    }    
+    }
 }
 
-.title{
+.title {
     font-size: 28px;
     margin-bottom: 10px;
 
     @media #{$max-sm} {
         font-size: 18px;
-    }      
+    }
 }
 
 
 // buttons
-.btn-icon{
+.btn-icon {
     background: transparent;
     border: none;
     padding: 5px 10px;
 }
 
-.btn{
+.btn {
     font-weight: 600;
 }
 
 // forms
 
-.form-control{
+.form-control {
     border-color: $border-color;
     border-radius: 2px;
     font-size: 14px;
     padding: 8px 10px;
     height: 40px;
 
-    &:focus{
-        box-shadow: 0 0 0 .2rem rgba(0, 0, 120,.15); 
-        border-color: rgba(0, 0, 120,.4)
+    &:focus {
+        box-shadow: 0 0 0 .2rem rgba(0, 0, 120, .15);
+        border-color: rgba(0, 0, 120, .4)
     }
 
-    &:disabled{
+    &:disabled {
         background-color: $bg-disabled;
     }
 }
@@ -125,9 +127,9 @@ main{
 
 // table
 
-table{
-    thead{
-        th{
+table {
+    thead {
+        th {
             text-transform: uppercase;
             font-weight: 600;
             padding: 15px 5px;
@@ -136,13 +138,14 @@ table{
         }
     }
 
-    th,td{
+    th,
+    td {
         font-size: 14px;
         padding: 8px 5px;
         vertical-align: middle;
     }
 
-    td{
+    td {
         font-weight: 400;
     }
 }
@@ -150,54 +153,55 @@ table{
 
 // nav tabs
 
-.nav-tabs{
+.nav-tabs {
     border-bottom: 0 !important;
-    margin:0 30px;
-    box-shadow: 0 2px 2px 0 rgba(13, 10, 44, 0.03); 
+    margin: 0 30px;
+    box-shadow: 0 2px 2px 0 rgba(13, 10, 44, 0.03);
 
-    .nav-item{
+    .nav-item {
         margin-right: 25px;
 
-        .nav-link{
+        .nav-link {
             color: $text-color;
             border: 0;
-            padding:15px 0;
+            padding: 15px 0;
 
-            &.active{
+            &.active {
                 color: black;
                 font-weight: 600;
                 border-bottom: 2px solid $red;
             }
-            &:hover{
+
+            &:hover {
                 border-bottom: 2px solid $red;
-                opacity:0.8;
-            }            
+                opacity: 0.8;
+            }
         }
     }
 
     @media #{$max-sm} {
-        margin:0 20px;
+        margin: 0 20px;
 
-        .nav-item{
+        .nav-item {
             margin-right: 15px;
             font-size: 14px;
 
-            .nav-link{
-                padding:12px 0;
+            .nav-link {
+                padding: 12px 0;
             }
         }
-    }      
+    }
 }
 
-.tab-content{
+.tab-content {
     padding: 30px;
 
-    .title{
+    .title {
         margin-bottom: 20px;
-    }        
+    }
 
 
     @media #{$max-sm} {
-        padding:20px;
-    }       
+        padding: 20px;
+    }
 }

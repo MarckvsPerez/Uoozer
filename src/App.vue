@@ -5,7 +5,7 @@ import SearchResults from './views/SearchResults.vue';
 </script>
 
 <template>
-  <AppHeader />
-  <SearchResults />
+    <AppHeader />
+    <SearchResults />
 </template>
 
