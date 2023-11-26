@@ -27,5 +27,6 @@ module.exports = {
   plugins: ['vue'],
   rules: {
     'max-len': 'off',
+    'linebreak-style': 'off',
   },
 };
