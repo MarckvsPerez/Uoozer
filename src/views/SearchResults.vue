@@ -1,9 +1,12 @@
 <script setup>
 import {ref} from 'vue';
 import ArtistItem from '@/components/ArtistItem.vue';
-import {data} from '@/json/artists.json';
+import SongItem from '@/components/SongItem.vue';
+import {data as artistsData} from '@/json/artists.json';
+import {data as tracksData} from '@/json/tracks.json';
 
-const artists = data.slice(0, 6);
+const artists = artistsData.slice(0, 10);
+const tracks = tracksData.slice(0, 10);
 const busqueda = ref('Tets');
 
 </script>
@@ -33,6 +36,15 @@ const busqueda = ref('Tets');
         <div class=" d-inline-flex">
           <ArtistItem class="p-2" v-for="artist in artists" v-bind="artist" :key="artist.id" />
         </div>
+
+        <button class="btn d-block">Canciones <fa-icon icon="chevron-right" /></button>
+        <ul class="list-group list-group-flush" >
+          <li class="list-group-item" v-for="track in tracks" :key="track.id">
+            <SongItem class="p-2" v-bind="track" />
+          </li>
+        </ul>
+
+
       </section>
 
     </div>
@@ -49,5 +61,4 @@ div {
     color: $grey-label;
   }
 }
-
 </style>
