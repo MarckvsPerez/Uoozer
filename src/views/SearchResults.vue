@@ -1,12 +1,15 @@
 <script setup>
 import {ref} from 'vue';
 import ArtistItem from '@/components/ArtistItem.vue';
-import SongItem from '@/components/SongItem.vue';
+import TrackItem from '@/components/TrackItem.vue';
+import AlbumItem from '@/components/AlbumItem.vue';
 import {data as artistsData} from '@/json/artists.json';
 import {data as tracksData} from '@/json/tracks.json';
+import {data as albumData} from '@/json/albums.json';
 
-const artists = artistsData.slice(0, 10);
-const tracks = tracksData.slice(0, 10);
+const artists = artistsData.slice(0, 6);
+const tracks = tracksData.slice(0, 6);
+const albums = albumData.slice(0, 6);
 const busqueda = ref('Tets');
 
 </script>
@@ -32,17 +35,25 @@ const busqueda = ref('Tets');
       </ul>
 
       <section class="tab-content">
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item px-0 ">
+            <button class="btn d-block">Canciones <fa-icon icon="chevron-right" /></button>
+          </li>
+          <li class="list-group-item px-0 " v-for="track in tracks" :key="track.id">
+            <TrackItem v-bind="track" />
+          </li>
+        </ul>
+
+        <button class="btn d-block">Álbumes <fa-icon icon="chevron-right" /></button>
+        <div class=" d-inline-flex">
+          <AlbumItem class="p-2" v-for="album in albums" v-bind="album" :key="album.id" />
+        </div>
+
         <button class="btn d-block">Artistas <fa-icon icon="chevron-right" /></button>
         <div class=" d-inline-flex">
           <ArtistItem class="p-2" v-for="artist in artists" v-bind="artist" :key="artist.id" />
         </div>
-
-        <button class="btn d-block">Canciones <fa-icon icon="chevron-right" /></button>
-        <ul class="list-group list-group-flush" >
-          <li class="list-group-item" v-for="track in tracks" :key="track.id">
-            <SongItem class="p-2" v-bind="track" />
-          </li>
-        </ul>
 
 
       </section>
@@ -60,5 +71,6 @@ div {
   span {
     color: $grey-label;
   }
+
 }
 </style>
