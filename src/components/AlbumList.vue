@@ -13,7 +13,7 @@ defineProps({
 <template>
   <section class="tab-content tracklist">
 
-    <h2 class="">{{ albums.length }} artistas </h2>
+    <h2 class="">{{ albums.length }} álbumes </h2>
 
     <ul class="list-group list-group-flush albums-list">
       <li class="list-group-item px-0 " v-for="album in albums" :key="album.id">

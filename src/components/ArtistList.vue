@@ -11,13 +11,11 @@ defineProps({
 </script>
 
 <template>
-    <section class="tab-content tracklist">
+    <section class="tab-content artistslist">
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item px-0 ">
-                <h2 class="">{{ artists.length }} canciones </h2>
-            </li>
-            <li class="list-group-item px-0 " v-for="artist in artists" :key="artist.id">
+      <h2 class="">{{ artists.length }} artistas </h2>
+        <ul class="list-group list-group-flush artists-list">
+            <li class="list-group-item px-0 artist" v-for="artist in artists" :key="artist.id">
                 <ArtistItem v-bind="artist" />
             </li>
         </ul>
@@ -26,10 +24,16 @@ defineProps({
 </template>
 
 <style>
-.tracklist {
-  h2{
+.artistslist {
+  h2 {
     font-weight: 900;
     font-size: 20px;
+  }
+
+  .artists-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 5px;
   }
 }
 </style>

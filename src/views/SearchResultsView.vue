@@ -36,7 +36,7 @@ const changeTab = (tab) => {
           <a class="nav-link" :class="{ 'active': activeTab === 'canciones' }" href="#">Canciones</a>
         </li>
         <li class="nav-item" @click="changeTab('albumes')" :class="{ 'active': activeTab === 'albumes' }">
-          <a class="nav-link" :class="{ 'active': activeTab === 'albumes' }" href="#">Albumes</a>
+          <a class="nav-link" :class="{ 'active': activeTab === 'albumes' }" href="#">Álbumes</a>
         </li>
         <li class="nav-item" @click="changeTab('artistas')" :class="{ 'active': activeTab === 'artistas' }">
           <a class="nav-link"  :class="{ 'active': activeTab === 'artistas' }" href="#">Artistas</a>
