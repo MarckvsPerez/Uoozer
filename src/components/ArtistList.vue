@@ -1,8 +1,8 @@
 <script setup>
-import TrackItem from '@/components/TrackItem.vue';
+import ArtistItem from '@/components/ArtistItem.vue';
 
 defineProps({
-  tracks: {
+  artists: {
     type: Array,
     default: () => [],
   },
@@ -13,10 +13,12 @@ defineProps({
 <template>
     <section class="tab-content tracklist">
 
-      <h2 class="">{{ tracks.length }} canciones </h2>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item px-0 " v-for="track in tracks" :key="track.id">
-                <TrackItem v-bind="track" />
+          <li class="list-group-item px-0 ">
+                <h2 class="">{{ artists.length }} canciones </h2>
+            </li>
+            <li class="list-group-item px-0 " v-for="artist in artists" :key="artist.id">
+                <ArtistItem v-bind="artist" />
             </li>
         </ul>
 

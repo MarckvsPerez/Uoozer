@@ -1,17 +1,19 @@
 <script setup>
 import {ref} from 'vue';
 
-import {data as artistsData} from '@/json/artists.json';
-import {data as tracksData} from '@/json/tracks.json';
-import {data as albumData} from '@/json/albums.json';
+import {data as artists} from '@/json/artists.json';
+import {data as tracks} from '@/json/tracks.json';
+import {data as albums} from '@/json/albums.json';
 
 import AllList from '@/components/AllList.vue';
 import TrackList from '@/components/TrackList.vue';
+import ArtistList from '@/components/ArtistList.vue';
+import AlbumList from '@/components/AlbumList.vue';
 
 
-const artists = artistsData.slice(0, 6);
-const tracks = tracksData.slice(0, 6);
-const albums = albumData.slice(0, 6);
+const artistsShort = artists.slice(0, 6);
+const tracksShort = tracks.slice(0, 6);
+const albumsShort = albums.slice(0, 6);
 
 const busqueda = ref('Tets');
 const activeTab = ref('todo');
@@ -42,10 +44,10 @@ const changeTab = (tab) => {
       </ul>
 
       <!-- Renderiza AllList según la pestaña activa -->
-      <AllList v-if="activeTab === 'todo'" :artists="artists" :tracks="tracks" :albums="albums" />
-      <TrackList v-else-if="activeTab === 'canciones'" :artists="[]" :tracks="tracks" :albums="[]" />
-      <AllList v-else-if="activeTab === 'albumes'" :artists="[]" :tracks="[]" :albums="albums" />
-      <AllList v-else-if="activeTab === 'artistas'" :artists="artists" :tracks="[]" :albums="[]" />
+      <AllList v-if="activeTab === 'todo'" :artists="artistsShort" :tracks="tracksShort" :albums="albumsShort" :changeTab="changeTab"/>
+      <TrackList v-else-if="activeTab === 'canciones'" :tracks="tracks"/>
+      <AlbumList v-else-if="activeTab === 'albumes'" :albums="albums" />
+      <ArtistList v-else-if="activeTab === 'artistas'" :artists="artists" />
     </div>
   </main>
 </template>
