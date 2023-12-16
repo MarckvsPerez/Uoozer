@@ -1,5 +1,6 @@
 import {createApp} from 'vue';
 import App from './App.vue';
+import router from './router';
 
 // Font awesome
 import {library} from '@fortawesome/fontawesome-svg-core';
@@ -17,4 +18,5 @@ import './firebase';
 
 const app = createApp(App);
 app.component('fa-icon', FontAwesomeIcon);
+app.use(router);
 app.mount('#app');

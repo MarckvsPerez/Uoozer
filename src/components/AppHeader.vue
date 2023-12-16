@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from 'vue';
+import {RouterLink} from 'vue-router';
 import SearchBar from '@/components/SearchBar.vue';
 
 const isLoggedIn = ref(true);
@@ -12,9 +13,12 @@ const currentUser = ref('Marc');
 
       <div>
 
-        <img class="navbar-brand" src="@/assets/uoozer_logo.svg" width="150" height="40" alt="uoozer logo">
 
-        <SearchBar />
+        <RouterLink to="/"><img class="navbar-brand" src="@/assets/uoozer_logo.svg" width="150" height="40"
+            alt="uoozer logo">
+        </RouterLink>
+        <RouterLink to="/search"><SearchBar /></RouterLink>
+
 
       </div>
 

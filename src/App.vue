@@ -1,11 +1,12 @@
 <script setup>
 import AppHeader from './components/AppHeader.vue';
-import SearchResults from './views/SearchResults.vue';
+import {RouterView} from 'vue-router';
 
 </script>
 
 <template>
     <AppHeader />
-    <SearchResults />
+    <RouterView />
+
 </template>
 
