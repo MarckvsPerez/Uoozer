@@ -1,63 +1,62 @@
-<template>
-  <main class="page-register">
+<script setup>
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 
-    <section class="box-auth">
-      <img class="logo" alt="logo" src="@/assets/icon.svg">
-      <h1 class="main-title">Registro</h1>
-      <p class="auth-intro">Regístrate en Uoozer para disfrutar de miles de canciones.</p>
+const email = ref('');
+const password = ref('');
+const auth = getAuth();
+const router = useRouter();
 
-      <form>
-          <div class="form-group">
-            <label class="form-label" for="username">Email</label>
-            <input placeholder="Correo electrónico" type="email" id="email" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="password">Contraseña</label>
-            <input placeholder="Contraseña" type="password" id="password" class="form-control">
-          </div>
-          <button class="btn btn-primary btn-lg">Registrar</button>
-      </form>
+const back = () => {
+  router.push('/');
+};
 
-      <p class="auth-bottom">¿Ya tienes cuenta?   <span class="alink">Inicia sesión</span></p>
-    </section>
-
-  </main>
-</template>
-
-<script>
-import firebase from 'firebase';
-export default {
-  name: 'register',
-  data: function() {
-    return {
-      // Completar
-    };
-  },
-  methods: {
-    register: function(e) {
-      firebase
-          .auth()
-          .createUserWithEmailAndPassword('***completar***', '***completar***')
-          .then(
-              // Completar
-          );
-      e.preventDefault();
-    },
-  },
+const register = () => {
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+      .then((userCredential) => {
+        back();
+        console.log('Nou usuari creat amb el correu: ' + userCredential.user.email);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 };
 </script>
 
-<style lang="scss" >
+<template>
+  <main class="page-register">
+    <section class="box-auth">
+      <img class="logo" alt="logo" src="@/assets/uoozer_logo.svg">
+      <h1 class="main-title">Registro</h1>
+      <p class="auth-intro">Regístrate en Uoozer para disfrutar de miles de canciones.</p>
 
-  .page-register{
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      <form @submit.prevent="register">
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input v-model="email" placeholder="Correo electrónico" type="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Contraseña</label>
+          <input v-model="password" placeholder="Contraseña" type="password" id="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+      </form>
 
-      .main-title {
-          margin-bottom: 20px;
-      }
+      <p class="auth-bottom">¿Ya tienes cuenta? <span class="alink">Inicia sesión</span></p>
+    </section>
+  </main>
+</template>
+
+
+<style lang="scss">
+.page-register {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .main-title {
+    margin-bottom: 20px;
   }
-
-
+}
 </style>
