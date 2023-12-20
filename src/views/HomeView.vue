@@ -1,5 +1,25 @@
+<script setup>
+import {ref, onMounted} from 'vue';
+import {getPlaylists} from '../api';
+import PlaylistList from '@/components/PlaylistList.vue';
+
+const playlists = ref(null);
+
+onMounted(async () => {
+  try {
+    const res = await getPlaylists();
+    playlists.value = res.data;
+    console.log(playlists.value);
+  } catch (error) {
+    console.error('Error fetching playlists:', error);
+  }
+});
+</script>
+
 <template>
     <main class="container">
-        <h1>Esto es el Home</h1>
+            <PlaylistList :playlists="playlists" />
     </main>
 </template>
+
+
