@@ -9,7 +9,6 @@ onMounted(async () => {
   try {
     const res = await getPlaylists();
     playlists.value = res.data;
-    console.log(playlists.value);
   } catch (error) {
     console.error('Error fetching playlists:', error);
   }

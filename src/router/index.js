@@ -4,6 +4,7 @@ import SearchResultsView from '../views/SearchResultsView.vue';
 import NotFoundView from '../views/NotFoundView.vue';
 import Login from '../views/LoginView.vue';
 import Register from '../views/RegisterView.vue';
+import Playlist from '../views/PlaylistView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +15,7 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/search',
+      path: '/search/:search?',
       name: 'search',
       component: SearchResultsView,
     },
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: Register,
+    },
+    {
+      path: '/playlist/:name',
+      name: 'playlist',
+      component: Playlist,
     },
   ],
 });

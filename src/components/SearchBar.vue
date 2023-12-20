@@ -1,21 +1,24 @@
 <script setup>
+import {ref} from 'vue';
 
+const search = ref('');
 </script>
 
 <template>
-    <div class="navbar-brand">
-        <div class="input-group">
-            <RouterLink to="/search">
-                <button class="btn " type="button" id="button-addon1"> <fa-icon icon="search" /></button>
-            </RouterLink>
-            <input type="text" class="bg-transparent"  id="search" name="search" placeholder="Cerca...">
-        </div>
-
+  <div class="navbar-brand">
+    <div class="input-group">
+      <router-link :to="search === '' ? '/' : `/search/${search}`">
+        <button class="btn" type="button" id="button-addon1">
+          <fa-icon icon="search" />
+        </button>
+      </router-link>
+      <input v-model="search" type="text" class="bg-transparent" id="search" name="search" placeholder="Cerca..." />
     </div>
+  </div>
 </template>
 
 <style>
-input {
+  input {
     border: none;
-}
+  }
 </style>

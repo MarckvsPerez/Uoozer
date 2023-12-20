@@ -1,4 +1,5 @@
 <script setup>
+import {RouterLink} from 'vue-router';
 
 defineProps({
   title: {
@@ -13,18 +14,24 @@ defineProps({
     type: String,
     default: '',
   },
+  id: {
+    type: Number,
+    default: 0,
+  },
 });
 
 </script>
 
 <template>
   <div class="card border-0 album-item">
+    <router-link :to="`/playlist/${id}`">
     <img class="card-img-top border" :src="picture_big" alt="">
     <div class="card-body">
       <span>{{ title }}</span>
       <br>
       <span>{{ user.name }}</span>
     </div>
+  </router-link>
   </div>
 </template>
 

@@ -1,5 +1,7 @@
 <script setup>
 import Playlist from '@/components/PlaylistItem.vue';
+import LoadingItem from '@/components/LoadingItem.vue';
+
 
 defineProps({
   playlists: {
@@ -11,23 +13,23 @@ defineProps({
 </script>
 
 <template>
-  <section>
+  <section class="h-100">
 
     <div class="px-2" v-if="playlists !== null && playlists !== undefined">
       <h2 >{{ playlists.length }} Listas de reproducción </h2>
 
       <div class="content playlist">
-        <ul class="list-group list-group-flush playlist-list">
-          <li class="list-group-item px-0 artist" v-for="playlist in playlists" :key="playlist.id">
-            <Playlist v-bind="playlist" />
-          </li>
-        </ul>
-      </div>
+            <ul class="list-group list-group-flush playlist-list">
+              <li class="list-group-item px-0 artist" v-for="playlist in playlists" :key="playlist.id">
+                <Playlist v-bind="playlist" />
+              </li>
+            </ul>
+          </div>
 
     </div>
 
-    <div v-else>
-      Cargando...
+    <div class="h-100 loader" v-else>
+      <LoadingItem/>
     </div>
 
   </section>
