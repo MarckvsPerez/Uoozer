@@ -28,7 +28,8 @@ const changeTab = (tab) => {
   activeTab.value = tab;
 };
 
-onMounted(async () => {
+const loadData = async () => {
+  isLoaded.value = false;
   try {
     busqueda.value = route.params.search;
 
@@ -44,47 +45,58 @@ onMounted(async () => {
     albums.value = resAlbums.data;
     albumsShort.value = albums.value.slice(0, 6);
   } catch (error) {
-    console.error('Error fetching playlists:', error);
+    console.error('Error fetching data:', error);
   } finally {
     isLoaded.value = true;
   }
-});
+};
 
 watch(() => route.params, () => {
   busqueda.value = route.params.search || '';
+  loadData();
 });
+
+onMounted(loadData);
 </script>
 
 <template>
   <main class="container">
-    <h1 class="main-title" v-if="busqueda != ' ' " >Resultados de <span>{{ busqueda }}</span></h1>
-    <h1 class="main-title" v-else >Todos los resultados</h1>
+    <h1 class="main-title" v-if="busqueda != ' '">Resultados de <span>{{ busqueda }}</span></h1>
+    <h1 class="main-title" v-else>Todos los resultados</h1>
 
     <div v-if="isLoaded === true" >
-      <ul class="nav nav-tabs">
-        <li class="nav-item" @click="changeTab('todo')" :class="{ 'active': activeTab === 'todo' }">
-          <a class="nav-link" :class="{ 'active': activeTab === 'todo' }" aria-current="page" href="#">Todo</a>
-        </li>
-        <li class="nav-item" @click="changeTab('canciones')" :class="{ 'active': activeTab === 'canciones' }">
-          <a class="nav-link" :class="{ 'active': activeTab === 'canciones' }" href="#">Canciones</a>
-        </li>
-        <li class="nav-item" @click="changeTab('albumes')" :class="{ 'active': activeTab === 'albumes' }">
-          <a class="nav-link" :class="{ 'active': activeTab === 'albumes' }" href="#">Álbumes</a>
-        </li>
-        <li class="nav-item" @click="changeTab('artistas')" :class="{ 'active': activeTab === 'artistas' }">
-          <a class="nav-link"  :class="{ 'active': activeTab === 'artistas' }" href="#">Artistas</a>
-        </li>
-      </ul>
+      <div v-if="tracks.length > 0" >
 
-      <!-- Renderiza AllList según la pestaña activa -->
-      <AllList v-if="activeTab === 'todo'" :artists="artistsShort" :tracks="tracksShort" :albums="albumsShort" :changeTab="changeTab"/>
-      <TrackList v-else-if="activeTab === 'canciones'" :tracks="tracks"/>
-      <AlbumList v-else-if="activeTab === 'albumes'" :albums="albums" />
-      <ArtistList v-else-if="activeTab === 'artistas'" :artists="artists" />
+        <ul class="nav nav-tabs">
+          <li class="nav-item" @click="changeTab('todo')" :class="{ 'active': activeTab === 'todo' }">
+            <a class="nav-link" :class="{ 'active': activeTab === 'todo' }" aria-current="page" href="#">Todo</a>
+          </li>
+          <li class="nav-item" @click="changeTab('canciones')" :class="{ 'active': activeTab === 'canciones' }">
+            <a class="nav-link" :class="{ 'active': activeTab === 'canciones' }" href="#">Canciones</a>
+          </li>
+          <li class="nav-item" @click="changeTab('albumes')" :class="{ 'active': activeTab === 'albumes' }">
+            <a class="nav-link" :class="{ 'active': activeTab === 'albumes' }" href="#">Álbumes</a>
+          </li>
+          <li class="nav-item" @click="changeTab('artistas')" :class="{ 'active': activeTab === 'artistas' }">
+            <a class="nav-link" :class="{ 'active': activeTab === 'artistas' }" href="#">Artistas</a>
+          </li>
+        </ul>
+
+        <!-- Renderiza AllList según la pestaña activa -->
+        <AllList v-if="activeTab === 'todo'" :artists="artistsShort" :tracks="tracksShort" :albums="albumsShort"
+          :changeTab="changeTab" />
+        <TrackList v-else-if="activeTab === 'canciones'" :tracks="tracks" />
+        <AlbumList v-else-if="activeTab === 'albumes'" :albums="albums" />
+        <ArtistList v-else-if="activeTab === 'artistas'" :artists="artists" />
+      </div>
+
+      <div class="p-2 buit" v-if="isLoaded === true && tracks.length == 0 && albums.length == 0 && artists.length == 0">
+        <h2>No s'ha trobat cap artista/àlbum/cançó que coincideixi amb la cerca</h2>
+      </div>
     </div>
 
     <div class="h-100 loader" v-else>
-      <LoadingItem/>
+      <LoadingItem />
     </div>
   </main>
 </template>
@@ -98,6 +110,11 @@ div {
   span {
     color: $grey-label;
   }
+}
 
+.buit {
+  min-height: 25vh;
+  display: flex;
+  align-items: center;
 }
 </style>

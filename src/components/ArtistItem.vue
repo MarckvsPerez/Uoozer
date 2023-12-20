@@ -1,4 +1,5 @@
 <script setup>
+import {formatedFansn} from '../filter';
 
 defineProps({
   name: {
@@ -15,9 +16,7 @@ defineProps({
   },
 });
 
-const formatedFansn = (number) => {
-  return new Intl.NumberFormat().format(number);
-};
+
 </script>
 
 <template>
